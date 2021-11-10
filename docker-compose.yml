@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  cwh:
+    container_name: jenkinstest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONIOENCODING=UTF-8
+    # network_mode: "host"
+    ports:
+      - '5000:5000'
+    volumes:
+      - type: bind
+        source: .
+        target: /usr/src/prod_code
+    command:
+      ["python","app.py"]
+    restart: unless-stopped
