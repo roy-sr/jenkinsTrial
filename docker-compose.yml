@@ -1,7 +1,7 @@
 version: '3.3'
 
 services:
-  cwh:
+  jenkinstest:
     container_name: jenkinstest
     build:
       context: .
@@ -13,6 +13,7 @@ services:
     ports:
       - '5000:5000'
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - type: bind
         source: .
         target: /usr/src/prod_code
